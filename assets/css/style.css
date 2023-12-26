@@ -81,7 +81,7 @@ For quiz complete screen:
 }
 
 .quiz-done.active {
-    display: block;
+    display: flex;
     margin: 20px;
 }
 
