@@ -8,6 +8,53 @@
     <title>Timed Coding Assessment</title>
 </head>
 <body>
+    <header>
+        <!--Need to deactivate/hide header when on highscores screen-->
+        <ul class="quiz-screen">
+            <li><a>View Highscores</a></li>
+            <li>Timer</li>
+        </ul>
+    </header>
+
+    <main>
+        <!--Quiz Screen-->
+        <section class="quiz-screen">
+            <div class="question-box">
+                <div class="quiz-questions active">
+                    <div class="question"></div>
+                    <ol class="answers">Question 1
+                        <li>Answer 1</li>
+                        <li>Answer 2</li>
+                        <li>Answer 3</li>
+                    </ol>
+                </div>
+                <div class="quiz-done">
+                    <h2>All Done!</h2>
+                    <p>Your Score is</p>
+                    <p>Enter initals</p>
+                    <button>Submit</button>
+                </div>
+            </div>
+        </section>
+
+        <!--Highscore Screen-->
+        <section class="highscores-screen">
+            <h2>Highscores</h2>
+            <ol>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </section>
+    </main>
+    <footer>
+        <!--Need to deactivate/hide footer when on highscores screen-->
+        <section class="quiz-feedback-box">
+            <!--div should change between "Correct!" and "Wrong!" depending on answer-->
+            <div>Correct!</div>
+
+        </section>
+    </footer>
     
     <script src="./assets/js/script.js"></script>
 </body>
