@@ -26,7 +26,6 @@ timer = setInterval(function() {
 //function to toggle highscore and quiz screens
 const toggleScreen = () => {
     //if quiz screen is active
-    debugger
     if(quizScreenElement.classList.contains("active")) {
         quizScreenElement.setAttribute("class", "quiz-screen");
         headerElement.setAttribute("class", "quiz-screen");

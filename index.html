@@ -8,8 +8,8 @@
     <title>Timed Coding Assessment</title>
 </head>
 <body>
+    <!--Header for Quiz screen-->
     <header class="quiz-screen active">
-        <!--Need to deactivate/hide header when on highscores screen-->
         <ul>
             <li><a href="#">View Highscores</a></li>
             <li class="timer">Timer: 60</li>
@@ -21,19 +21,22 @@
         <section class="quiz-screen active" id="quiz-screen">
             <div class="question-box">
                 <div class="quiz-questions active">
-                    <div class="question">Question 1 is about this long</div>
+                    <h2 class="question">Question 1 is about this long</h2>
                     <ol class="answers">
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium vel, necessitatibus porro dolorem eveniet dolorum qui culpa eum sint, expedita pariatur, quis rem cum?</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium vel, necessitatibus porro dolorem eveniet dolorum qui culpa eum sint, expedita pariatur, quis rem cum?</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium vel, necessitatibus porro dolorem eveniet dolorum qui culpa eum sint, expedita pariatur, quis rem cum?</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                     </ol>
                     <div class="quiz-feedback-box">Correct!</div>
                 </div>
                 <div class="quiz-done ">
                     <h2>All Done!</h2>
-                    <p>Your Score is</p>
-                    <p>Enter initals</p>
-                    <button id="submit-initials">Submit</button>
+                    <p>Your final score is</p>
+                    <form>
+                        <label for="initials">Enter Initials</label>
+                        <input type="text" for="initials" id="initials">
+                        <input type="submit" id="submit-initials">
+                    </form>
                 </div>
             </div>
         </section>
