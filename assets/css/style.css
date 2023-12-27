@@ -24,6 +24,16 @@ main {
     height: 300px;
 }
 
+/*Toggle active between quiz-screen and highscore-screen*/
+.quiz-screen {
+    display: none;
+}
+
+.quiz-screen.active {
+    display: flex;
+    justify-content: center;
+}
+
 
 .question-box {
     display: flex;
@@ -82,9 +92,19 @@ For quiz complete screen:
 
 .quiz-done.active {
     display: flex;
+    flex-direction: column;
     margin: 20px;
 }
 
+.quiz-done h2 {
+    font-size: 30px;
+}
 
+.highscore-screen {
+    display: none;
+}
 
-
+.highscore-screen.active {
+    display: flex;
+    justify-content: center;
+}

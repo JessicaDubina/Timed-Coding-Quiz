@@ -8,7 +8,7 @@
     <title>Timed Coding Assessment</title>
 </head>
 <body>
-    <header class="quiz-screen">
+    <header class="quiz-screen active">
         <!--Need to deactivate/hide header when on highscores screen-->
         <ul>
             <li><a href="#">View Highscores</a></li>
@@ -18,7 +18,7 @@
 
     <main>
         <!--Quiz Screen-->
-        <section class="quiz-screen">
+        <section class="quiz-screen active" id="quiz-screen">
             <div class="question-box">
                 <div class="quiz-questions active">
                     <div class="question">Question 1 is about this long</div>
@@ -27,19 +27,19 @@
                         <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium vel, necessitatibus porro dolorem eveniet dolorum qui culpa eum sint, expedita pariatur, quis rem cum?</li>
                         <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium vel, necessitatibus porro dolorem eveniet dolorum qui culpa eum sint, expedita pariatur, quis rem cum?</li>
                     </ol>
-                    <div class="quiz-feedback-box active">Correct!</div>
+                    <div class="quiz-feedback-box">Correct!</div>
                 </div>
                 <div class="quiz-done ">
                     <h2>All Done!</h2>
                     <p>Your Score is</p>
                     <p>Enter initals</p>
-                    <button>Submit</button>
+                    <button id="submit-initials">Submit</button>
                 </div>
             </div>
         </section>
 
         <!--Highscore Screen-->
-        <section class="highscores-screen">
+        <section class="highscore-screen" id="highscore-screen">
             <h2>Highscores</h2>
             <ol>
                 <li></li>
