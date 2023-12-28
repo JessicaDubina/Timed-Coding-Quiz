@@ -6,6 +6,7 @@ let submitButton = document.querySelector("#submit-initials");
 let quizScreenElement = document.querySelector("#quiz-screen");
 let headerElement = document.querySelector("header");
 let highscoreScreenElement = document.querySelector("#highscore-screen");
+let userInitialsInput = document.querySelector("#initials");
 
 let timerCount = 5;
 
@@ -38,6 +39,10 @@ const toggleScreen = () => {
 }
 
 //add event listener to submit button to toggle over to highscore screen
-submitButton.addEventListener("click", toggleScreen);
+submitButton.addEventListener("click", function() {
+    localStorage.setItem("user",userInitialsInput.value);
+    debugger
+    toggleScreen();
+});
 
 //initial status: quiz-questions is active
