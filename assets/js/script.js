@@ -8,6 +8,7 @@ let headerElement = document.querySelector("header");
 let highscoreScreenElement = document.querySelector("#highscore-screen");
 let userInitialsInput = document.querySelector("#initials");
 let highscoreList = document.querySelector("#highscores-list");
+let clearListButton = document.querySelector("#clear-highscores");
 
 //initialize timer at max time
 let timerCount = 5;
@@ -60,3 +61,7 @@ const addHighscores = () => {
     li.textContent = newHighscore;
     highscoreList.appendChild(li);
 }
+
+clearListButton.addEventListener("click", function() {
+    highscoreList.innerHTML = "";
+})
