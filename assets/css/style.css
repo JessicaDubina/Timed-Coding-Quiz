@@ -33,7 +33,13 @@ main {
     padding: 10px 0px;
 }
 
-/*Toggle active between quiz-screen and highscore-screen*/
+/*
+There are two main screen types: 
+    1. Quiz screen (start quiz, active quiz, quiz done)
+    2. Highscore screen
+Screen only displays when shown active
+*/
+
 .quiz-screen {
     display: none;
 }
@@ -53,13 +59,19 @@ main {
 }
 
 /*
-For quiz in progress: 
-  .quiz-questions class should be active (initial state), 
-  .quiz-done class should not have active
-For quiz complete screen:
-  .quiz-questions class should have .active removed,
-  .quiz-done class should have .active added
+Start quiz screen is main landing screen
+Toggles from Start quiz screen to Quiz screen to Quiz Done Screen based on which is active
 */
+
+.start-quiz-screen {
+    display: none;
+}
+
+.start-quiz-screen.active {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .quiz-questions {
     display: none;

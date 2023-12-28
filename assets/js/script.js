@@ -9,13 +9,22 @@ let highscoreScreenElement = document.querySelector("#highscore-screen");
 let userInitialsInput = document.querySelector("#initials");
 let highscoreList = document.querySelector("#highscores-list");
 let clearListButton = document.querySelector("#clear-highscores");
+let startQuizElement = document.querySelector(".start-quiz-screen");
+let startQuizButton = document.querySelector("#start-quiz");
 
-//initialize timer at max time
-let timerCount = 5;
 
-timer = setInterval(function() {
-    timerCount--;
-    timerElement.textContent = "Timer: " + timerCount;
+const startQuiz = () => {
+    if (startQuizElement.classList.contains("active")) {
+        startQuizElement.setAttribute("class", "start-quiz-screen");
+        quizQuestionsElement.setAttribute("class", "quiz-questions active");
+    } 
+
+    //initialize timer at max time
+    let timerCount = 5;
+
+    timer = setInterval(function() {
+        timerCount--;
+        timerElement.textContent = "Timer: " + timerCount;
     
     //stop timer at 0
     if (timerCount === 0) {
@@ -25,7 +34,11 @@ timer = setInterval(function() {
         quizQuestionsElement.setAttribute("class", "quiz-questions");
         quizDoneElement.setAttribute("class", "quiz-done active");
     }
-}, 1000);
+    }, 1000);
+}
+
+//event listener on start quiz button to switch screens and begin quiz
+startQuizButton.addEventListener("click", startQuiz);
 
 //function to toggle highscore and quiz screens
 const toggleScreen = () => {
