@@ -21,7 +21,7 @@
         <section class="quiz-screen active" id="quiz-screen">
             <div class="question-box">
                 <div class="quiz-questions active">
-                    <h2 class="question">Question 1 is about this long</h2>
+                    <h2 class="question screen-title">Question 1 is about this long</h2>
                     <ol class="answers"> <!--Maybe use datalist for question/answer selection-->
                         <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                         <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
@@ -30,7 +30,7 @@
                     <div class="quiz-feedback-box">Correct!</div>
                 </div>
                 <div class="quiz-done ">
-                    <h2>All Done!</h2>
+                    <h2 class="screen-title">All Done!</h2>
                     <p>Your final score is</p>
                     <form>
                         <label for="initials">Enter Initials</label>
@@ -43,10 +43,14 @@
 
         <!--Highscore Screen-->
         <section class="highscore-screen" id="highscore-screen">
-            <h2>Highscores</h2>
+            <h2 class="screen-title">Highscores</h2>
             <ol id="highscores-list">
 
             </ol>
+            <div class="buttons">
+                <button id="back-button">Go Back</button>
+                <button id="clear-highscores">Clear Highscores</button>
+            </div>
         </section>
     </main>
     <footer>

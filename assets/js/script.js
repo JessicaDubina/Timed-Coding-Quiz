@@ -1,4 +1,4 @@
-//make timer: start at 1 minute, then run down to 0
+//element selectors
 let timerElement = document.querySelector(".timer");
 let quizQuestionsElement = document.querySelector(".quiz-questions");
 let quizDoneElement = document.querySelector(".quiz-done");
@@ -9,6 +9,7 @@ let highscoreScreenElement = document.querySelector("#highscore-screen");
 let userInitialsInput = document.querySelector("#initials");
 let highscoreList = document.querySelector("#highscores-list");
 
+//initialize timer at max time
 let timerCount = 5;
 
 timer = setInterval(function() {
@@ -32,7 +33,7 @@ const toggleScreen = () => {
         quizScreenElement.setAttribute("class", "quiz-screen");
         headerElement.setAttribute("class", "quiz-screen");
         highscoreScreenElement.setAttribute("class", "highscore-screen active")
-        renderHighscores();
+        addHighscores();
     } else {
         quizScreenElement.setAttribute("class", "quiz-screen active");
         headerElement.setAttribute("class", "quiz-screen active");
@@ -51,10 +52,10 @@ submitButton.addEventListener("click", function() {
     toggleScreen();
 });
 
-const renderHighscores = () => {
+//take new user highscore form storage and append to highscore list
+const addHighscores = () => {
     let storedUser = JSON.parse(localStorage.getItem("userHighscores"));
     let newHighscore = storedUser.user + " - " + storedUser.score;
-    debugger
     let li = document.createElement("li");
     li.textContent = newHighscore;
     highscoreList.appendChild(li);
