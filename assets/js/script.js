@@ -11,6 +11,7 @@ let highscoreList = document.querySelector("#highscores-list");
 let clearListButton = document.querySelector("#clear-highscores");
 let startQuizElement = document.querySelector(".start-quiz-screen");
 let startQuizButton = document.querySelector("#start-quiz");
+let backButton = document.querySelector("#back-button");
 
 
 const startQuiz = () => {
@@ -77,4 +78,15 @@ const addHighscores = () => {
 
 clearListButton.addEventListener("click", function() {
     highscoreList.innerHTML = "";
+})
+
+backButton.addEventListener("click", function() {
+    //reset quiz screen active status to landing page
+    startQuizElement.setAttribute("class", "start-quiz-screen active");
+    quizQuestionsElement.setAttribute("class", "quiz-questions");
+    quizDoneElement.setAttribute("class", "quiz-done");
+    //clear active status from highscore screen and toggle backt to quiz landing screen
+    quizScreenElement.setAttribute("class", "quiz-screen active");
+    headerElement.setAttribute("class", "quiz-screen active");
+    highscoreScreenElement.setAttribute("class", "highscore-screen");
 })
