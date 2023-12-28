@@ -7,9 +7,9 @@ let quizScreenElement = document.querySelector("#quiz-screen");
 let headerElement = document.querySelector("header");
 let highscoreScreenElement = document.querySelector("#highscore-screen");
 let userInitialsInput = document.querySelector("#initials");
+let highscoreList = document.querySelector("#highscores-list");
 
 let timerCount = 5;
-
 
 timer = setInterval(function() {
     timerCount--;
@@ -19,6 +19,7 @@ timer = setInterval(function() {
     if (timerCount === 0) {
         clearInterval(timer);
         //when timer is 0: .quiz-questions has .active removed; quiz-done has .active added
+        //initial status: .quiz-questions is .active
         quizQuestionsElement.setAttribute("class", "quiz-questions");
         quizDoneElement.setAttribute("class", "quiz-done active");
     }
@@ -31,6 +32,7 @@ const toggleScreen = () => {
         quizScreenElement.setAttribute("class", "quiz-screen");
         headerElement.setAttribute("class", "quiz-screen");
         highscoreScreenElement.setAttribute("class", "highscore-screen active")
+        renderHighscores();
     } else {
         quizScreenElement.setAttribute("class", "quiz-screen active");
         headerElement.setAttribute("class", "quiz-screen active");
@@ -40,9 +42,20 @@ const toggleScreen = () => {
 
 //add event listener to submit button to toggle over to highscore screen
 submitButton.addEventListener("click", function() {
-    localStorage.setItem("user",userInitialsInput.value);
-    debugger
+    let userHighscores = {
+        user: userInitialsInput.value.trim(),
+        score: "0"
+    };
+
+    localStorage.setItem("userHighscores",JSON.stringify(userHighscores));
     toggleScreen();
 });
 
-//initial status: quiz-questions is active
+const renderHighscores = () => {
+    let storedUser = JSON.parse(localStorage.getItem("userHighscores"));
+    let newHighscore = storedUser.user + " - " + storedUser.score;
+    debugger
+    let li = document.createElement("li");
+    li.textContent = newHighscore;
+    highscoreList.appendChild(li);
+}
