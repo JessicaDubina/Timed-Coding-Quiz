@@ -12,6 +12,7 @@ let clearListButton = document.querySelector("#clear-highscores");
 let startQuizElement = document.querySelector(".start-quiz-screen");
 let startQuizButton = document.querySelector("#start-quiz");
 let backButton = document.querySelector("#back-button");
+let viewHighscoresLink = document.querySelector("#view-highscores");
 
 
 const startQuiz = () => {
@@ -64,6 +65,7 @@ submitButton.addEventListener("click", function() {
     };
 
     localStorage.setItem("userHighscores",JSON.stringify(userHighscores));
+    userInitialsInput.value = "";
     toggleScreen();
 });
 
@@ -85,8 +87,15 @@ backButton.addEventListener("click", function() {
     startQuizElement.setAttribute("class", "start-quiz-screen active");
     quizQuestionsElement.setAttribute("class", "quiz-questions");
     quizDoneElement.setAttribute("class", "quiz-done");
-    //clear active status from highscore screen and toggle backt to quiz landing screen
+    //clear active status from highscore screen and toggle back to quiz landing screen
     quizScreenElement.setAttribute("class", "quiz-screen active");
     headerElement.setAttribute("class", "quiz-screen active");
     highscoreScreenElement.setAttribute("class", "highscore-screen");
+})
+
+viewHighscoresLink.addEventListener("click", function() {
+    //clear active status from quiz screen and toggle back to highscore screen
+    quizScreenElement.setAttribute("class", "quiz-screen");
+    headerElement.setAttribute("class", "quiz-screen");
+    highscoreScreenElement.setAttribute("class", "highscore-screen active");
 })
