@@ -13,6 +13,28 @@ let startQuizElement = document.querySelector(".start-quiz-screen");
 let startQuizButton = document.querySelector("#start-quiz");
 let backButton = document.querySelector("#back-button");
 let viewHighscoresLink = document.querySelector("#view-highscores");
+let question = document.querySelector(".question");
+let answers = document.querySelectorAll(".answers li");
+
+const quizQuestions = [
+    {
+        question: "This is question 1",
+        options: ["option 1", "option 2", "option 3", "option 4"],
+        answer: 2
+    },
+
+    {
+        question: "This is question 2",
+        options: ["option 1", "option 2", "option 3", "option 4"],
+        answer: 2
+    },
+
+    {
+        question: "This is question 3",
+        options: ["option 1", "option 2", "option 3", "option 4"],
+        answer: 2
+    },
+];
 
 
 const startQuiz = () => {
@@ -20,6 +42,12 @@ const startQuiz = () => {
         startQuizElement.setAttribute("class", "start-quiz-screen");
         quizQuestionsElement.setAttribute("class", "quiz-questions active");
     } 
+
+    //initialize first question/answer
+    question.textContent = quizQuestions[0].question;
+    for (let i = 0; i < answers.length; i++) {
+        answers[i].textContent = quizQuestions[0].options[i];
+    }
 
     //initialize timer at max time
     let timerCount = 5;
