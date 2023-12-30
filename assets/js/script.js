@@ -51,11 +51,30 @@ const startQuiz = () => {
     } 
 
     //initialize first question/answer
-    
     for (let i = 0; i < answers.length; i++) {
         question.textContent = quizQuestions[0].question;
         answers[i].textContent = quizQuestions[0].options[i];
     }
+
+    
+
+
+    //initialize timer at max time
+    let timerCount = 60;
+
+    timer = setInterval(function() {
+        timerCount--;
+        timerElement.textContent = "Timer: " + timerCount;
+    
+        //stop timer at 0 and moves to quiz-done screen
+        if (timerCount <= 0) {
+            clearInterval(timer);
+            timerElement.textContent = "Timer: 0";
+            quizQuestionsElement.setAttribute("class", "quiz-questions");
+            quizDoneElement.setAttribute("class", "quiz-done active");
+            finalScoreElement.textContent = "Your final score is " + score;
+        } 
+    }, 1000);
 
     //event listener for selecting an answer
     answerList.addEventListener("click", function(event) {
@@ -67,27 +86,10 @@ const startQuiz = () => {
                 score = score + 10;
             } else {
             quizFeedback.textContent = "Wrong!";
-            //need to subtract time from counter
+            timerCount = timerCount - 5;
             }
         }
     })
-
-    //initialize timer at max time
-    let timerCount = 5;
-
-    timer = setInterval(function() {
-        timerCount--;
-        timerElement.textContent = "Timer: " + timerCount;
-    
-    //stop timer at 0
-    if (timerCount <= 0) {
-        clearInterval(timer);
-        //when timer is 0, move to quiz-done screen
-        quizQuestionsElement.setAttribute("class", "quiz-questions");
-        quizDoneElement.setAttribute("class", "quiz-done active");
-        finalScoreElement.textContent = "Your final score is " + score;
-    } 
-    }, 1000);
 }
 
 //event listener on start quiz button to switch screens and begin quiz
