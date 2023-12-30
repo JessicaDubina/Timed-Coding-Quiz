@@ -16,7 +16,7 @@ let viewHighscoresLink = document.querySelector("#view-highscores");
 let question = document.querySelector(".question");
 let answerList = document.querySelector(".answers");
 let answers = document.querySelectorAll(".answers li");
-let quizFeedback = document.querySelector(".quiz-feedback-box").textContent;
+let quizFeedback = document.querySelector(".quiz-feedback-box");
 let finalScoreElement = document.querySelector("#final-score");
 
 let score = 0;
@@ -24,8 +24,7 @@ let score = 0;
 const quizQuestions = [
     {
         question: "This is question 1",
-        optionvalues: ["1. Option", "Option 2", "option 3", "option 4"],
-        optionkeys: [0, 1, 2, 3],
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
         answer: "Option 2"
     },
 
@@ -55,23 +54,22 @@ const startQuiz = () => {
     
     for (let i = 0; i < answers.length; i++) {
         question.textContent = quizQuestions[0].question;
-        answers[i].textContent = quizQuestions[0].optionvalues[i];
+        answers[i].textContent = quizQuestions[0].options[i];
     }
 
     //event listener for selecting an answer
     answerList.addEventListener("click", function(event) {
         let userSelection = event.target;
-
         if (userSelection.matches("li") === true ) {
             console.log(userSelection);
             if (userSelection.textContent === quizQuestions[0].answer) {
-                quizFeedback = "Correct!";
+                quizFeedback.textContent = "Correct!";
                 score = score + 10;
-            }
-            quizFeedback = "Wrong!";
+            } else {
+            quizFeedback.textContent = "Wrong!";
             //need to subtract time from counter
+            }
         }
-        
     })
 
     //initialize timer at max time
