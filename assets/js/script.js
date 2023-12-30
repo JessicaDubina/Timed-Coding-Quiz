@@ -27,17 +27,45 @@ const quizQuestions = [
         options: ["1. Option", "Option 2", "option 3", "option 4"],
         answer: "Option 2"
     },
-
     {
         question: "This is question 2",
         options: ["option 1", "option 2", "option 3", "option 4"],
         answer: 2
     },
-
     {
         question: "This is question 3",
         options: ["option 1", "option 2", "option 3", "option 4"],
         answer: 2
+    },
+    {
+        question: "This is question 4",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "This is question 5",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "This is question 6",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "This is question 7",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "This is question 8",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "This is question 9",
+        options: ["1. Option", "Option 2", "option 3", "option 4"],
+        answer: "Option 2"
     },
 ];
 
@@ -51,14 +79,30 @@ const startQuiz = () => {
     } 
 
     //initialize first question/answer
+    let questionIndex = 0;
     for (let i = 0; i < answers.length; i++) {
-        question.textContent = quizQuestions[0].question;
-        answers[i].textContent = quizQuestions[0].options[i];
+        question.textContent = quizQuestions[questionIndex].question;
+        answers[i].textContent = quizQuestions[questionIndex].options[i];
+    }
+
+    //iterate to next question
+    const nextQuestion = () => {
+        //let currentQuestionIndex = quiz
+        if (questionIndex < quizQuestions.length - 1) {
+
+        questionIndex = questionIndex + 1;
+        question.textContent = quizQuestions[questionIndex].question;
+        for (let i = 0; i < answers.length; i++) {
+                answers[i].textContent = quizQuestions[questionIndex].options[i];
+            }
+        } else {
+            alert("You've completed all the available questions. Remaining time will be added to your score!")
+            score = score + timerCount;
+            timerCount = 0;
+        }
     }
 
     
-
-
     //initialize timer at max time
     let timerCount = 60;
 
@@ -77,6 +121,11 @@ const startQuiz = () => {
     }, 1000);
 
     //event listener for selecting an answer
+
+    //add into event listener:
+    //when button is clicked, toggle to next question.
+    //create function to toggle to next question
+
     answerList.addEventListener("click", function(event) {
         let userSelection = event.target;
         if (userSelection.matches("li") === true ) {
@@ -84,9 +133,11 @@ const startQuiz = () => {
             if (userSelection.textContent === quizQuestions[0].answer) {
                 quizFeedback.textContent = "Correct!";
                 score = score + 10;
+                nextQuestion();
             } else {
             quizFeedback.textContent = "Wrong!";
             timerCount = timerCount - 5;
+            nextQuestion();
             }
         }
     })
