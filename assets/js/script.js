@@ -1,26 +1,34 @@
-//element selectors
-let timerElement = document.querySelector(".timer");
-let quizQuestionsElement = document.querySelector(".quiz-questions");
-let quizDoneElement = document.querySelector(".quiz-done");
-let submitButton = document.querySelector("#submit-initials");
+//Main landing screen element selectors
 let quizScreenElement = document.querySelector("#quiz-screen");
 let headerElement = document.querySelector("header");
-let highscoreScreenElement = document.querySelector("#highscore-screen");
-let userInitialsInput = document.querySelector("#initials");
-let highscoreList = document.querySelector("#highscores-list");
-let clearListButton = document.querySelector("#clear-highscores");
 let startQuizElement = document.querySelector(".start-quiz-screen");
 let startQuizButton = document.querySelector("#start-quiz");
-let backButton = document.querySelector("#back-button");
-let viewHighscoresLink = document.querySelector("#view-highscores");
+
+//Quiz questions screen element selectors
+let timerElement = document.querySelector(".timer");
+let quizQuestionsElement = document.querySelector(".quiz-questions");
 let question = document.querySelector(".question");
 let answerList = document.querySelector(".answers");
 let answers = document.querySelectorAll(".answers li");
 let quizFeedback = document.querySelector(".quiz-feedback-box");
+
+//Quiz done screen element selectors
+let quizDoneElement = document.querySelector(".quiz-done");
+let submitButton = document.querySelector("#submit-initials");
+let userInitialsInput = document.querySelector("#initials");
 let finalScoreElement = document.querySelector("#final-score");
+
+//Highscore screen element selectors
+let highscoreScreenElement = document.querySelector("#highscore-screen");
+let highscoreList = document.querySelector("#highscores-list");
+let clearListButton = document.querySelector("#clear-highscores");
+let backButton = document.querySelector("#back-button");
+let viewHighscoresLink = document.querySelector("#view-highscores");
+
 
 let score = 0;
 
+//object that contains all of the quiz questions
 const quizQuestions = [
     {
         question: "Which of the following is NOT a type of loop on JavaScript?",
@@ -77,6 +85,14 @@ const toggleQuizQuestionScreen = () => {
     }
 }
 
+//function to toggle to highscore screen
+const toggleHighscoreScreen = () => {
+    quizScreenElement.setAttribute("class", "quiz-screen");
+    headerElement.setAttribute("class", "quiz-screen");
+    highscoreScreenElement.setAttribute("class", "highscore-screen active");
+    addHighscores();
+}
+
 //initializes Quiz and carries user through all quiz questions. 
 //once time is up or all questions have been answered, transitions to quiz-done screen
 const startQuiz = () => {
@@ -93,10 +109,8 @@ const startQuiz = () => {
         answers[i].textContent = quizQuestions[questionIndex].options[i];
     }
 
-    //iterate to next question
+    //function to move to next question
     const nextQuestion = () => {
-        
-        //let currentQuestionIndex = quiz
         if (questionIndex < quizQuestions.length - 1) {
             questionIndex = questionIndex + 1;
             question.textContent = quizQuestions[questionIndex].question;
@@ -107,19 +121,14 @@ const startQuiz = () => {
             alert("You've completed all the available questions. Remaining time will be added to your score!");
             score = score + timerCount;
             timerCount = 0;
-            answerList.removeEventListener("click", clickHandler);
+            answerList.removeEventListener("click", checkAnswer);
         } 
     }
 
-    //event listener for selecting an answer  
-    console.log("event listner outside index " + questionIndex);
-    
-    const clickHandler = (event) => {
+    //Check if answer is correct and score/timer actions based on answer
+    const checkAnswer = (event) => {
         let userSelection = event.target;
-        
-        console.log("event listner inside index " + questionIndex);
         if (userSelection.matches("li") === true ) {
-            console.log(userSelection);
             if (userSelection.textContent === quizQuestions[questionIndex].answer) {
                 quizFeedback.textContent = "Correct!";
                 score = score + 10; 
@@ -128,12 +137,11 @@ const startQuiz = () => {
             timerCount = timerCount - 5;
             }
             nextQuestion();
-            
         }
-        
     }
 
-    answerList.addEventListener("click", clickHandler);
+    //event listener for selecting an answer  
+    answerList.addEventListener("click", checkAnswer);
 
     //initialize timer at max time
     let timerCount = 60;
@@ -147,13 +155,11 @@ const startQuiz = () => {
             clearInterval(timer);
             endQuiz(score);
         } 
-    }, 1000);
-
-      
+    }, 1000);  
 }
 
+//move to quiz done screen and display score
 const endQuiz = (score) => {
-
     timerElement.textContent = "Timer: 0";
     quizQuestionsElement.setAttribute("class", "quiz-questions");
     quizDoneElement.setAttribute("class", "quiz-done active");
@@ -164,15 +170,7 @@ const endQuiz = (score) => {
 //event listener on start quiz button to switch screens and begin quiz
 startQuizButton.addEventListener("click", startQuiz);
 
-//function to toggle to highscore screen
-const toggleHighscoreScreen = () => {
-    quizScreenElement.setAttribute("class", "quiz-screen");
-    headerElement.setAttribute("class", "quiz-screen");
-    highscoreScreenElement.setAttribute("class", "highscore-screen active");
-    addHighscores();
-}
-
-//add event listener to submit button to toggle over to highscore screen
+//event listener for submit button to toggle over to highscore screen
 submitButton.addEventListener("click", function() {
     
     let userHighscores = {
@@ -185,7 +183,7 @@ submitButton.addEventListener("click", function() {
     toggleHighscoreScreen();
 });
 
-//take new user highscore form storage and append to highscore list
+//take new user highscore form and append to highscore list
 const addHighscores = () => {
     let storedUser = JSON.parse(localStorage.getItem("userHighscores"));
     let newHighscore = storedUser.user + " - " + storedUser.score;

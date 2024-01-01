@@ -1,3 +1,13 @@
+:root {
+    --button-background: #2c0266;
+    --button-padding: 2px 10px;
+    --button-border: 1px solid white;
+    --button-border-radius: 5px;
+    --button-margin: 2px;
+    --small-font: 12px;
+    --medium-font: 15px;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -6,17 +16,19 @@ header {
     display: flex;
 }
 
+/*Positioning for header items for quiz screen*/
 header ul {
     display: inline-flex;
-    justify-content: space-between;
     width: 100%;
-    margin: 10px 20px;
-    font-size: 12px;
+    margin: 10px 0px;
+    padding: 10px;
+    justify-content: space-between;
+    font-size: var(--small-font);
 }
 
 a {
     text-decoration: none;
-    color: #2c0266;
+    color: var(--button-background);
 }
 
 main {
@@ -26,6 +38,7 @@ main {
     height: 300px;
 }
 
+/*Style for each screen's main title or subject*/
 .screen-title {
     display: flex;
     font-size: 20px;
@@ -33,23 +46,7 @@ main {
     padding: 10px 0px;
 }
 
-/*
-There are two main screen types: 
-    1. Quiz screen (start quiz, active quiz, quiz done)
-    2. Highscore screen
-Screen only displays when shown active
-*/
-
-.quiz-screen {
-    display: none;
-}
-
-.quiz-screen.active {
-    display: flex;
-    justify-content: center;
-}
-
-
+/*Position and size for all quiz subscreens*/
 .question-box {
     display: flex;
     justify-content: center;
@@ -59,44 +56,55 @@ Screen only displays when shown active
 }
 
 /*
-Start quiz screen is main landing screen
-Toggles from Start quiz screen to Quiz screen to Quiz Done Screen based on which is active
+There are two main screen types: 
+    1. Quiz screen (start quiz, active quiz, quiz done)
+    2. Highscore screen
+Screen only displays when shown active
 */
 
-.start-quiz-screen {
+.quiz-screen,
+.start-quiz-screen, 
+.quiz-questions,
+.quiz-done,
+.highscore-screen {
     display: none;
 }
 
-.start-quiz-screen.active {
+.quiz-screen.active,
+.start-quiz-screen.active,
+.quiz-questions.active,
+.quiz-done.active,
+.highscore-screen.active {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.quiz-questions {
-    display: none;
+/*Positioning for question container*/
+.question {
+    align-items: center;
 }
 
-.quiz-questions.active {
-    display: flex;
-    flex-direction: column;
-}
-
+/*List of answers sizing, display, and styles*/
 .answers {
     display: flex;
     flex-direction: column;
-    font-size: 12px;
+    font-size: var(--small-font);
+    width: fit-content;
 }
 
+/*Styling for each individual answer box*/
 .answers li {
-    margin: 2px;
-    border: 1px solid white;
-    background-color: #2c0266;
+    margin: var(--button-margin);
+    border: var(--button-border);
+    background-color: var(--button-background);
     color: white;
-    padding: 2px 10px;
-    border-radius: 5px;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
 }
 
+/*Styling and positioning for the feedback box at the bottom of the active quiz*/
 .quiz-feedback-box {
     display: flex;
     margin: 20px 20px;
@@ -109,29 +117,23 @@ Toggles from Start quiz screen to Quiz screen to Quiz Done Screen based on which
     font-style: italic;
 }
 
-.quiz-done {
-    display: none;
-}
-
-.quiz-done.active {
-    display: flex;
-    flex-direction: column;
-}
-
+/*Quiz done screen - final score statement styles*/
 .quiz-done p {
     display: flex;
-    font-size: 15px;
+    font-size: var(--medium-font);
     padding: 10px 0px 20px 0px;
 }
 
+/*Quiz done screen - Enter Initials form stylings*/
 .quiz-done form {
     display: flex;
-    font-size: 15px;
+    font-size: var(--medium-font);
 }
 
 form label {
     display: flex;
     align-items: center;
+    width: max-content;
 }
 
 form input {
@@ -141,48 +143,45 @@ form input {
 }
 
 
-/*Highscore screen */
-.highscore-screen {
-    display: none;
-}
-
+/*Active Highscore screen visible display */
 .highscore-screen.active {
-    display: flex;
-    flex-direction: column;
     width: 60%;
     height: 300px;
-    margin: 50px 20px 20px 20px;
+    margin: 20px;
 }
 
+/*Placement of the highscore screen buttons */
 .buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: var(--small-font);
 }
 
+/*Styling of the highscore screen buttons*/
 .highscore-screen button {
-    background-color: #2c0266;
+    background-color: var(--button-background);
     color: white;
     justify-content: center;
     object-fit: contain;
     text-wrap: nowrap;
-    padding: 2px 10px;
-    border-radius: 5px;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
     margin: 10px;
 }
 
 #highscores-list {
     display: flex;
     flex-direction: column;
-    font-size: 12px;
+    font-size: var(--small-font);
 }
 
+/*Styling for the individual highscore boxes*/
 #highscores-list li {
-    margin: 2px;
-    border: 1px solid white;
-    border-radius: 5px;
+    margin: var(--button-margin);
+    border: var(--button-border);
+    border-radius: var(--button-border-radius);
     background-color: #c5a3f4;
     color: white;
-    padding: 2px 10px;
+    padding: var(--button-padding);
 }
