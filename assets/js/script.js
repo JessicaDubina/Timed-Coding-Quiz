@@ -23,49 +23,49 @@ let score = 0;
 
 const quizQuestions = [
     {
-        question: "This is question 1",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "Which of the following is NOT a type of loop on JavaScript?",
+        options: ["for", "for/in", "while", "when"],
+        answer: "when"
     },
     {
-        question: "This is question 2",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-        answer: 2
+        question: "What does the array unshift() method do?",
+        options: ["removes the first array element", "adds a new element to an array (at the beginning)", "returns an indexed element from an array", "removes the last element from an array"],
+        answer: "adds a new element to an array (at the beginning)"
     },
     {
-        question: "This is question 3",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-        answer: 2
+        question: "The CSS box model consists of (in order from interior to exterior)",
+        options: ["content, padding, margins and borders", "content, margins, borders and padding", "content, padding, borders and margins", "content, borders, padding and margins"],
+        answer: "content, padding, borders and margins"
     },
     {
-        question: "This is question 4",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "Elements with a meaning refers to:",
+        options: ["Semantic elements", "Non-semantic elements", "Header elements", "Title elements"],
+        answer: "Semantic elements"
     },
     {
-        question: "This is question 5",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "During an event in JavaScript, the 'this' keyword refers to",
+        options: ["the nearest object", "the element that received the event", "the global object", "nothing, unless it is pre-defined"],
+        answer: "the element that received the event"
     },
     {
-        question: "This is question 6",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "Which is NOT a way to define a function in JavaScript",
+        options: ["a function as a statement", "a function as an expression", "a function as an object", "a function as an arrow function"],
+        answer: "a function as an object"
     },
     {
-        question: "This is question 7",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "Given a flex container, if we wanted move the contents into a column in the center of the box, and order them from bottom to top, which properties should we use?",
+        options: ["Flex direction: column-reverse; align-items: center;", "Flex direction: column-reverse; justify-content: center;", "Flex direction: column; align-items: center;", "Flex direction: column; justify-content: center;"],
+        answer: "Flex direction: column-reverse; align-items: center;"
     },
     {
-        question: "This is question 8",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "Which is NOT a way to collect user input?",
+        options: ["Prompt('Enter your name')", "<input> element", "alert('Enter your name')", "button.addEventListener()"],
+        answer: "alert('Enter your name')"
     },
     {
-        question: "This is question 9",
-        options: ["1. Option", "Option 2", "option 3", "option 4"],
-        answer: "Option 2"
+        question: "An allocated piece of memory that the JavaScript engine is unable to reclaim is condsidered what?",
+        options: ["poor allocation to local storage", "permanent local storage", "memory loss", "memory leak"],
+        answer: "memory leak"
     },
 ];
 
