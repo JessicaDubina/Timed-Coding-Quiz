@@ -69,17 +69,25 @@ const quizQuestions = [
     },
 ];
 
-
-const startQuiz = () => {
-    score = 0;
-    //move active status to quiz screen
+//function to toggle from start quiz screen to quiz question screen
+const toggleQuizQuestionScreen = () => {
     if (startQuizElement.classList.contains("active")) {
         startQuizElement.setAttribute("class", "start-quiz-screen");
         quizQuestionsElement.setAttribute("class", "quiz-questions active");
-    } 
+    }
+}
+
+//initializes Quiz and carries user through all quiz questions. 
+//once time is up or all questions have been answered, transitions to quiz-done screen
+const startQuiz = () => {
+    //reset quiz variables
+    quizFeedback.textContent = "";
+    score = 0;
+    let questionIndex = 0;
+    
+    toggleQuizQuestionScreen();
 
     //initialize first question/answer
-    let questionIndex = 0;
     for (let i = 0; i < answers.length; i++) {
         question.textContent = quizQuestions[questionIndex].question;
         answers[i].textContent = quizQuestions[questionIndex].options[i];
@@ -87,22 +95,46 @@ const startQuiz = () => {
 
     //iterate to next question
     const nextQuestion = () => {
+        
         //let currentQuestionIndex = quiz
         if (questionIndex < quizQuestions.length - 1) {
-
-        questionIndex = questionIndex + 1;
-        question.textContent = quizQuestions[questionIndex].question;
-        for (let i = 0; i < answers.length; i++) {
+            questionIndex = questionIndex + 1;
+            question.textContent = quizQuestions[questionIndex].question;
+            for (let i = 0; i < answers.length; i++) {
                 answers[i].textContent = quizQuestions[questionIndex].options[i];
             }
-        } else {
-            alert("You've completed all the available questions. Remaining time will be added to your score!")
+        } else if (questionIndex === quizQuestions.length - 1) {
+            alert("You've completed all the available questions. Remaining time will be added to your score!");
             score = score + timerCount;
             timerCount = 0;
-        }
+            answerList.removeEventListener("click", clickHandler);
+        } 
     }
 
+    //event listener for selecting an answer  
+    console.log("event listner outside index " + questionIndex);
     
+    const clickHandler = (event) => {
+        let userSelection = event.target;
+        
+        console.log("event listner inside index " + questionIndex);
+        if (userSelection.matches("li") === true ) {
+            console.log(userSelection);
+            if (userSelection.textContent === quizQuestions[questionIndex].answer) {
+                quizFeedback.textContent = "Correct!";
+                score = score + 10; 
+            } else {
+            quizFeedback.textContent = "Wrong!";
+            timerCount = timerCount - 5;
+            }
+            nextQuestion();
+            
+        }
+        
+    }
+
+    answerList.addEventListener("click", clickHandler);
+
     //initialize timer at max time
     let timerCount = 60;
 
@@ -113,49 +145,36 @@ const startQuiz = () => {
         //stop timer at 0 and moves to quiz-done screen
         if (timerCount <= 0) {
             clearInterval(timer);
-            timerElement.textContent = "Timer: 0";
-            quizQuestionsElement.setAttribute("class", "quiz-questions");
-            quizDoneElement.setAttribute("class", "quiz-done active");
-            finalScoreElement.textContent = "Your final score is " + score;
+            endQuiz(score);
         } 
     }, 1000);
 
-    //event listener for selecting an answer
+      
+}
 
-    //add into event listener:
-    //when button is clicked, toggle to next question.
-    //create function to toggle to next question
+const endQuiz = (score) => {
 
-    answerList.addEventListener("click", function(event) {
-        let userSelection = event.target;
-        if (userSelection.matches("li") === true ) {
-            console.log(userSelection);
-            if (userSelection.textContent === quizQuestions[0].answer) {
-                quizFeedback.textContent = "Correct!";
-                score = score + 10;
-                nextQuestion();
-            } else {
-            quizFeedback.textContent = "Wrong!";
-            timerCount = timerCount - 5;
-            nextQuestion();
-            }
-        }
-    })
+    timerElement.textContent = "Timer: 0";
+    quizQuestionsElement.setAttribute("class", "quiz-questions");
+    quizDoneElement.setAttribute("class", "quiz-done active");
+    finalScoreElement.textContent = "Your final score is " + score;
+    questionIndex = 0;
 }
 
 //event listener on start quiz button to switch screens and begin quiz
 startQuizButton.addEventListener("click", startQuiz);
 
 //function to toggle to highscore screen
-const toggleScreenToHighscores = () => {
+const toggleHighscoreScreen = () => {
     quizScreenElement.setAttribute("class", "quiz-screen");
     headerElement.setAttribute("class", "quiz-screen");
-    highscoreScreenElement.setAttribute("class", "highscore-screen active")
+    highscoreScreenElement.setAttribute("class", "highscore-screen active");
     addHighscores();
 }
 
 //add event listener to submit button to toggle over to highscore screen
 submitButton.addEventListener("click", function() {
+    
     let userHighscores = {
         user: userInitialsInput.value.trim(),
         score: score
@@ -163,7 +182,7 @@ submitButton.addEventListener("click", function() {
 
     localStorage.setItem("userHighscores",JSON.stringify(userHighscores));
     userInitialsInput.value = "";
-    toggleScreenToHighscores();
+    toggleHighscoreScreen();
 });
 
 //take new user highscore form storage and append to highscore list
